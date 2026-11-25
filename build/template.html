@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="$lang">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>$page_title</title>
+<meta name="description" content="$meta_description">
+<link rel="canonical" href="$canonical">
+<link rel="alternate" hreflang="en" href="$site_url/">
+<link rel="alternate" hreflang="id" href="$site_url/id/">
+<link rel="alternate" hreflang="x-default" href="$site_url/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="$og_locale">
+<meta property="og:url" content="$canonical">
+<meta property="og:title" content="$page_title">
+<meta property="og:description" content="$meta_description">
+<meta property="og:image" content="$site_url$photo">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#F7F6F2">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Marcellus&amp;display=swap">
+<link rel="stylesheet" href="/assets/styles.css">
+<!-- META PIXEL: paste the Meta Pixel base code here once the Pixel ID is known.
+     WhatsApp clicks are already reported as the "Contact" event by the script at the end of the page. -->
+</head>
+<body>
+
+<header class="wrap site-header">
+<div class="brand">$brand</div>
+<div class="tagline">$tagline</div>
+<nav class="lang" aria-label="$lang_nav_label">
+$lang_switch
+</nav>
+</header>
+
+<main>
+
+<section class="wrap hero">
+<div class="hero-text">
+<div class="eyebrow">$hero_eyebrow</div>
+<h1>$hero_h1</h1>
+<p class="lede">$hero_lede</p>
+<div class="price">
+<div class="label">$price_label</div>
+<div class="amount">$price_amount</div>
+<div class="approx">$price_approx</div>
+</div>
+<a class="btn btn-wa" href="$wa_url" data-wa="hero" rel="noopener">
+<svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20.5l1.7-5.1A8.5 8.5 0 1 1 21 11.5z"></path></svg>
+<span>$cta_main</span>
+</a>
+<div class="small">$cta_small</div>
+</div>
+
+<div class="hero-map">
+<svg role="img" aria-label="$map_aria" viewBox="0 0 360 380">
+<rect x="0" y="0" width="360" height="380" fill="#E6EBDD"></rect>
+<rect x="0" y="300" width="360" height="80" fill="#0F3B3A"></rect>
+<rect x="0" y="284" width="360" height="18" fill="#E8DCC0"></rect>
+<path d="M214 0 L250 232 Q254 250 274 250 L360 244" fill="none" stroke="#C9CCC2" stroke-width="22" stroke-linecap="round"></path>
+<path d="M214 0 L250 232 Q254 250 274 250 L360 244" fill="none" stroke="#F7F6F2" stroke-width="1.5" stroke-dasharray="6 8"></path>
+<path d="M118 116 L212 104 L232 214 L138 228 Z" fill="#B88A4A" fill-opacity="0.28" stroke="#6E5226" stroke-width="2.5"></path>
+<text x="176" y="162" text-anchor="middle" font-family="Marcellus, Georgia, serif" font-size="22" fill="#10201F">400 m²</text>
+<text x="176" y="182" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" letter-spacing="1.5" fill="#33443F">$map_plot</text>
+<line x1="176" y1="232" x2="176" y2="282" stroke="#10201F" stroke-width="1.2" stroke-dasharray="3 4"></line>
+<text x="168" y="262" text-anchor="end" font-family="Inter, sans-serif" font-size="12" fill="#10201F">$map_distance</text>
+<text x="24" y="346" font-family="Marcellus, Georgia, serif" font-size="20" fill="#F7F6F2">$map_beach</text>
+<text x="262" y="92" font-family="Inter, sans-serif" font-size="11" letter-spacing="1.2" fill="#33443F">$map_road</text>
+<text x="262" y="108" font-family="Inter, sans-serif" font-size="11" fill="#33443F">$map_road_width</text>
+<path d="M36 52 L36 24 M28 34 L36 24 L44 34" fill="none" stroke="#10201F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+<text x="36" y="70" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#10201F">$map_north</text>
+</svg>
+<div class="note">$map_note</div>
+</div>
+</section>
+
+<section class="band-paper">
+<div class="wrap section stack" style="padding-top: 48px; padding-bottom: 48px">
+<div class="eyebrow">$facts_eyebrow</div>
+<div class="facts">
+<div class="fact"><div class="num">$fact1_num</div><div class="cap">$fact1_cap</div></div>
+<div class="fact"><div class="num">$fact2_num</div><div class="cap">$fact2_cap</div></div>
+<div class="fact"><div class="num">$fact3_num</div><div class="cap">$fact3_cap</div></div>
+<div class="fact"><div class="num">$fact4_num</div><div class="cap">$fact4_cap</div></div>
+<div class="fact"><div class="num">$fact5_num</div><div class="cap">$fact5_cap</div></div>
+<div class="fact"><div class="num">$fact6_num</div><div class="cap">$fact6_cap</div></div>
+</div>
+<div class="facts-note">$facts_note</div>
+</div>
+</section>
+
+<section class="wrap section photo">
+<div class="eyebrow">$photo_eyebrow</div>
+<h2>$photo_h2</h2>
+<img src="$photo" alt="$photo_alt" width="1500" height="923" loading="lazy">
+<p>$photo_caption</p>
+</section>
+
+<section class="band-sea on-dark">
+<div class="wrap section split">
+<div class="split-main">
+<div class="eyebrow">$loc_eyebrow</div>
+<h2>$loc_h2</h2>
+<p>$loc_p1</p>
+<p>$loc_p2</p>
+</div>
+<div class="split-side">
+<div class="stat"><div class="num">$stat1_num</div><div class="cap">$stat1_cap</div></div>
+<div class="stat"><div class="num">$stat2_num</div><div class="cap">$stat2_cap</div></div>
+<div class="stat"><div class="num">$stat3_num</div><div class="cap">$stat3_cap</div></div>
+<div class="source">$loc_source</div>
+</div>
+</div>
+</section>
+
+<section class="wrap section stack">
+<div class="stack-tight">
+<div class="eyebrow">$who_eyebrow</div>
+<h2>$who_h2</h2>
+</div>
+<div class="cards">
+<div class="card"><div class="title">$card1_title</div><div class="text">$card1_text</div></div>
+<div class="card"><div class="title">$card2_title</div><div class="text">$card2_text</div></div>
+<div class="card"><div class="title">$card3_title</div><div class="text">$card3_text</div></div>
+</div>
+</section>
+
+<section class="band-paper ownership">
+<div class="wrap section split">
+<div class="split-main" style="gap: 16px">
+<div class="eyebrow">$own_eyebrow</div>
+<h2>$own_h2</h2>
+<p class="intro">$own_intro</p>
+</div>
+<div class="split-main qa-list" style="gap: 20px">
+<div class="qa"><h3>$own_q1</h3><p>$own_a1</p></div>
+<div class="qa"><h3>$own_q2</h3><p>$own_a2</p></div>
+<div class="qa"><h3>$own_q3</h3><p>$own_a3</p></div>
+</div>
+</div>
+</section>
+
+<section class="wrap-narrow note-owner">
+<div class="eyebrow">$note_eyebrow</div>
+<p class="quote">$note_quote</p>
+<p class="after">$note_after</p>
+</section>
+
+<section class="band-paper" style="border-bottom: 0">
+<div class="wrap section stack">
+<div class="stack-tight">
+<div class="eyebrow">$how_eyebrow</div>
+<h2>$how_h2</h2>
+</div>
+<ol class="steps">
+<li><div class="n">01</div><div class="t">$step1_t</div><div class="d">$step1_d</div></li>
+<li><div class="n">02</div><div class="t">$step2_t</div><div class="d">$step2_d</div></li>
+<li><div class="n">03</div><div class="t">$step3_t</div><div class="d">$step3_d</div></li>
+<li><div class="n">04</div><div class="t">$step4_t</div><div class="d">$step4_d</div></li>
+</ol>
+</div>
+</section>
+
+<section class="wrap-narrow section stack">
+<div class="stack-tight">
+<div class="eyebrow">$faq_eyebrow</div>
+<h2>$faq_h2</h2>
+</div>
+<div class="faq">
+<div class="qa"><h3>$faq_q1</h3><p>$faq_a1</p></div>
+<div class="qa"><h3>$faq_q2</h3><p>$faq_a2</p></div>
+<div class="qa"><h3>$faq_q3</h3><p>$faq_a3</p></div>
+<div class="qa"><h3>$faq_q4</h3><p>$faq_a4</p></div>
+<div class="qa"><h3>$faq_q5</h3><p>$faq_a5</p></div>
+<div class="qa"><h3>$faq_q6</h3><p>$faq_a6</p></div>
+<div class="qa"><h3>$faq_q7</h3><p>$faq_a7</p></div>
+</div>
+</section>
+
+<section class="band-ink on-dark">
+<div class="wrap-narrow final">
+<div class="eyebrow">$final_eyebrow</div>
+<h2>$final_h2</h2>
+<div class="prices">$final_prices</div>
+<a class="btn btn-light" href="$wa_url" data-wa="final" rel="noopener">
+<svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20.5l1.7-5.1A8.5 8.5 0 1 1 21 11.5z"></path></svg>
+<span>$final_cta</span>
+</a>
+<div class="contact">WhatsApp: $wa_display · $final_contact_langs</div>
+<a class="map" href="$maps_url" rel="noopener">$final_map</a>
+<div class="legal">$final_legal</div>
+</div>
+</section>
+
+</main>
+
+<div class="bar">
+<div class="bar-inner">
+<div>
+<div class="p1">$bar_p1</div>
+<div class="p2">$bar_p2</div>
+</div>
+<a class="btn btn-wa" href="$wa_url" data-wa="bar" rel="noopener">
+<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20.5l1.7-5.1A8.5 8.5 0 1 1 21 11.5z"></path></svg>
+<span>$bar_cta</span>
+</a>
+</div>
+</div>
+
+<script>
+// Reports WhatsApp clicks to Meta Pixel as "Contact" once the Pixel is installed.
+document.querySelectorAll('a[data-wa]').forEach(function (link) {
+  link.addEventListener('click', function () {
+    if (typeof window.fbq === 'function') {
+      window.fbq('track', 'Contact', { placement: link.getAttribute('data-wa'), language: document.documentElement.lang });
+    }
+  });
+});
+</script>
+</body>
+</html>
