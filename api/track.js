@@ -3,7 +3,7 @@
 const { query } = require('./_lib/db');
 
 const BOT = /bot|crawl|spider|slurp|facebookexternalhit|whatsapp|preview|monitor|headless|lighthouse|pingdom|curl|wget|python|node-fetch/i;
-const TYPES = new Set(['pv', 'ping', 'leave', 'cta', 'map', 'lang']);
+const TYPES = new Set(['pv', 'ping', 'leave', 'cta', 'map', 'lang', 'form']);
 
 function str(value, max) {
   if (typeof value !== 'string') return null;

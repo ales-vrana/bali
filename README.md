@@ -43,6 +43,19 @@ Two things run on every page:
 
 Redeploy after adding them. Tables are created automatically on the first visit.
 
+### Email form
+
+The "Send me info to my email" button posts to `/api/lead`, which stores the address and sends
+the info email through Resend. The email texts (English and Bahasa) are in `api/lead.js`.
+
+| Variable | Value |
+|---|---|
+| `RESEND_API_KEY` | API key from resend.com. Required. |
+| `EMAIL_FROM` | Optional. Default `Bali Beach Land <info@balibeach.cloud>`. The domain must be verified in Resend. |
+| `EMAIL_REPLY_TO` | Optional. Address that receives replies to the info email. |
+
+Limits: one email per address per day, 5 requests per IP per hour, 150 emails per day in total.
+
 ### Excluding your own visits
 
 Open the site once with `?notrack=1` at the end of the address. That browser is ignored from then on.

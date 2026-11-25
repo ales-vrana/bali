@@ -112,6 +112,9 @@
     } catch (e) { /* nothing else to try */ }
   }
 
+  // Lets other scripts on the page record an event (used by the email form).
+  window.bbTrack = function (type, extra) { readScroll(); send(type, extra); save(); };
+
   readScroll();
   send('pv');
 

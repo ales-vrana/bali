@@ -59,6 +59,20 @@ CREATE TABLE IF NOT EXISTS events (
   engaged_ms  integer,
   scroll      integer
 );
+CREATE TABLE IF NOT EXISTS leads (
+  id          bigserial PRIMARY KEY,
+  ts          timestamptz NOT NULL DEFAULT now(),
+  email       text NOT NULL,
+  lang        text,
+  session_id  text,
+  visitor_id  text,
+  ip_hash     text,
+  country     text,
+  status      text NOT NULL,
+  resend_id   text,
+  error       text
+);
+CREATE INDEX IF NOT EXISTS leads_ts_idx ON leads (ts);
 CREATE INDEX IF NOT EXISTS sessions_started_at_idx ON sessions (started_at);
 CREATE INDEX IF NOT EXISTS events_ts_type_idx ON events (ts, type);
 `;

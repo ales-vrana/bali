@@ -53,6 +53,7 @@ button[aria-pressed=true] { background: var(--ink); color: var(--ground); border
 table { width: 100%; border-collapse: collapse; font-size: 14px; }
 th, td { text-align: right; padding: 8px 10px; border-bottom: 1px solid var(--line-soft); white-space: nowrap; font-variant-numeric: tabular-nums; }
 th { font-weight: 500; color: var(--ink-mute); font-size: 12px; letter-spacing: 0.04em; }
+#t-leads td:nth-child(2) { text-align: left; }
 th:first-child, td:first-child { text-align: left; white-space: normal; word-break: break-word; min-width: 150px; }
 tbody tr:hover { background: var(--ground); }
 td.empty { text-align: center; color: var(--ink-mute); padding: 20px; }
@@ -151,10 +152,16 @@ td.empty { text-align: center; color: var(--ink-mute); padding: 20px; }
 </section>
 <section class="panel">
 <h2>Další kliky</h2>
-<p class="hint">map = odkaz na Google Maps, lang = přepnutí jazyka.</p>
+<p class="hint">map = odkaz na Google Maps, lang = přepnutí jazyka, form = otevření formuláře pro e-mail.</p>
 <div class="scroll-x"><table id="t-other"></table></div>
 </section>
 </div>
+
+<section class="panel">
+<h2>Zájemci, kteří si nechali poslat info e-mailem</h2>
+<p class="hint">Stav "sent" znamená, že Resend e-mail přijal k odeslání.</p>
+<div class="scroll-x"><table id="t-leads"></table></div>
+</section>
 
 <div class="grid2">
 <section class="panel"><h2>Jazyk stránky</h2><div class="scroll-x"><table id="t-lang"></table></div></section>
@@ -328,6 +335,7 @@ td.empty { text-align: center; color: var(--ink-mute); padding: 20px; }
       tile('Návštěvníci', num(t.visitors), 'z toho noví: ' + num(t.new_visitors)),
       tile('Návštěvy', num(t.sessions), 'zobrazení stránek: ' + num(t.pageviews)),
       tile('Kliky na WhatsApp', num(t.cta_clicks), 'návštěv s klikem: ' + num(t.cta_sessions)),
+      tile('Zájemci e-mailem', num((d.leads || []).filter(function (l) { return l.status === 'sent'; }).length), 'odeslané info e-maily'),
       tile('Míra prokliku', pct(t.cta_sessions, t.sessions), 'návštěvy s klikem / návštěvy'),
       tile('Medián času', dur(t.median_ms), 'průměr: ' + dur(t.avg_ms)),
       tile('Čas do kliku', dur(t.median_first_cta_ms), 'medián u těch, kdo klikli'),
@@ -354,6 +362,12 @@ td.empty { text-align: center; color: var(--ink-mute); padding: 20px; }
       (d.placements || []).map(function (r) { return [r.label, num(r.clicks), num(r.sessions), dur(r.median_ms)]; }), 'Zatím žádné kliky.');
     table('t-other', ['Typ', 'Kliky', 'Návštěvy'],
       (d.other || []).map(function (r) { return [r.label, num(r.clicks), num(r.sessions)]; }), 'Zatím žádné kliky.');
+
+    table('t-leads', ['Odesláno', 'E-mail', 'Jazyk', 'Země', 'UTM', 'Kreativa', 'Stav'],
+      (d.leads || []).map(function (l) {
+        var utm = [l.utm_source, l.utm_medium, l.utm_campaign].filter(Boolean).join(' / ');
+        return [l.sent, l.email, l.lang, l.country, utm, l.utm_content, l.status + (l.error ? ' (' + l.error + ')' : '')];
+      }), 'Zatím nikdo.');
 
     table('t-recent', ['Začátek', 'Jazyk', 'Zařízení', 'Země', 'Město', 'Odkud', 'UTM', 'Kreativa', 'Čas', 'Scroll', 'Kliky WA', 'Čas do kliku', 'Nový'],
       (d.recent || []).map(function (r) {

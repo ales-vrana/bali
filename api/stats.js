@@ -118,7 +118,7 @@ module.exports = async (req, res) => {
 
     const other = await query(
       `SELECT type AS label, count(*)::int AS clicks, count(DISTINCT session_id)::int AS sessions
-       FROM events WHERE type IN ('map', 'lang') AND ${EVENT_RANGE} GROUP BY 1 ORDER BY clicks DESC`,
+       FROM events WHERE type IN ('map', 'lang', 'form') AND ${EVENT_RANGE} GROUP BY 1 ORDER BY clicks DESC`,
       params
     );
 
@@ -131,7 +131,17 @@ module.exports = async (req, res) => {
       params
     );
 
+    const LEAD_RANGE = RANGE.replace(/started_at/g, 'l.ts');
+    const leads = await query(
+      `SELECT to_char(l.ts AT TIME ZONE $3, 'YYYY-MM-DD HH24:MI') AS sent, l.email, l.lang, l.country, l.status, l.error,
+              s.utm_source, s.utm_medium, s.utm_campaign, s.utm_content
+       FROM leads l LEFT JOIN sessions s ON s.session_id = l.session_id
+       WHERE ${LEAD_RANGE} ORDER BY l.ts DESC LIMIT 200`,
+      params
+    );
+
     return send(res, 200, {
+      leads: leads.rows,
       range: { from, to, tz },
       totals: totals.rows[0],
       daily: daily.rows,

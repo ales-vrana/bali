@@ -156,3 +156,27 @@ h1 { font-family: var(--display); font-weight: 400; font-size: clamp(36px, 7vw, 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 }
+
+/* Secondary button and the email form */
+button.btn { font: inherit; font-weight: 600; font-size: 17px; cursor: pointer; width: 100%; border: 0; }
+.btn-outline { background: transparent; color: var(--ink); border: 1px solid var(--ink) !important; }
+.btn-outline:hover { background: var(--paper); }
+.on-dark .btn-outline { color: #F1EEE4; border-color: #F1EEE4 !important; }
+.on-dark .btn-outline:hover { background: rgba(241, 238, 228, 0.1); }
+button:focus-visible, input:focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; }
+
+dialog.lead { border: 0; padding: 0; background: transparent; width: min(440px, calc(100vw - 32px)); max-height: calc(100vh - 32px); color: var(--ink); }
+dialog.lead::backdrop { background: rgba(16, 32, 31, 0.6); }
+.lead-box { position: relative; background: var(--ground); border-radius: 4px; padding: 28px 24px 24px; display: flex; flex-direction: column; gap: 14px; }
+.lead-box h2 { font-size: 28px; padding-right: 36px; }
+.lead-x { position: absolute; top: 10px; right: 10px; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; background: transparent; border: 0; border-radius: 4px; color: var(--ink); cursor: pointer; }
+.lead-x:hover { background: var(--paper); }
+#lead-form { display: flex; flex-direction: column; gap: 12px; }
+#lead-form p { color: var(--ink-soft); }
+#lead-form label { font-weight: 600; font-size: 15px; }
+#lead-form input[type=email] { font: inherit; width: 100%; min-height: 52px; padding: 0 14px; border: 1px solid var(--ink-mute); border-radius: 4px; background: var(--paper); color: var(--ink); }
+.lead-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.lead-status { font-size: 16px; min-height: 0; }
+.lead-status:empty { display: none; }
+.lead-status.ok { color: var(--ink); font-weight: 500; }
+.lead-status.err { color: #8A2B1E; }

@@ -60,6 +60,10 @@ $lang_switch
 <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20.5l1.7-5.1A8.5 8.5 0 1 1 21 11.5z"></path></svg>
 <span>$cta_main</span>
 </a>
+<button type="button" class="btn btn-outline" data-lead-open="hero">
+<svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg>
+<span>$lead_cta</span>
+</button>
 <div class="small">$cta_small</div>
 </div>
 
@@ -197,6 +201,10 @@ $lang_switch
 <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20.5l1.7-5.1A8.5 8.5 0 1 1 21 11.5z"></path></svg>
 <span>$final_cta</span>
 </a>
+<button type="button" class="btn btn-outline" data-lead-open="final">
+<svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg>
+<span>$lead_cta</span>
+</button>
 <div class="contact">WhatsApp: $wa_display · $final_contact_langs</div>
 <a class="map" href="$maps_url" rel="noopener">$final_map</a>
 <div class="legal">$final_legal</div>
@@ -218,6 +226,25 @@ $lang_switch
 </div>
 </div>
 
+<dialog id="lead-dialog" class="lead" aria-labelledby="lead-title">
+<div class="lead-box">
+<button type="button" class="lead-x" data-lead-close aria-label="$lead_close">
+<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+</button>
+<div class="eyebrow">$brand</div>
+<h2 id="lead-title">$lead_title</h2>
+<form id="lead-form" novalidate data-msg-ok="$lead_ok" data-msg-err="$lead_err" data-msg-invalid="$lead_invalid" data-msg-sending="$lead_sending">
+<p>$lead_text</p>
+<label for="lead-email">$lead_label</label>
+<input type="email" id="lead-email" name="email" autocomplete="email" inputmode="email" required>
+<div class="lead-hp" aria-hidden="true"><label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+<button type="submit" class="btn btn-wa">$lead_submit</button>
+<p class="small">$lead_privacy</p>
+</form>
+<p id="lead-status" class="lead-status" role="status" aria-live="polite"></p>
+</div>
+</dialog>
+
 <script>
 // Reports WhatsApp clicks to Meta Pixel as the "Contact" event.
 document.querySelectorAll('a[data-wa]').forEach(function (link) {
@@ -229,5 +256,6 @@ document.querySelectorAll('a[data-wa]').forEach(function (link) {
 });
 </script>
 <script src="/assets/track.js" defer></script>
+<script src="/assets/lead.js" defer></script>
 </body>
 </html>
