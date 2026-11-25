@@ -14,6 +14,7 @@ SHARED = {
         "&amp;ftid=0x2dd213ca19a9c965:0x3b13e880c8a6ce84"
     ),
     "photo": "/assets/plot-today.jpg",
+    "pixel_id": "884397061610419",  # Meta Pixel "Ales Vrana's Pixel"
 }
 
 LANGS = {

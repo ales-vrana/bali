@@ -24,5 +24,31 @@ output directory left empty (the repository root is served as is).
 
 ## Tracking
 
-The Meta Pixel base code goes into the marked comment in `build/template.html`.
-Every WhatsApp button already sends the `Contact` event when the Pixel is present.
+Two things run on every page:
+
+- **Meta Pixel** `884397061610419` ("Ales Vrana's Pixel"). Sends `PageView`, and `Contact` on every WhatsApp click.
+  The ID lives in `build/content.py` (`pixel_id`).
+- **Own first-party tracking** (`assets/track.js` -> `/api/track` -> Postgres). Stores visits, visitors, UTM
+  parameters, engaged time, scroll depth and clicks. No IP address is stored.
+
+### Admin
+
+`/admin/` shows the statistics. It needs two environment variables in Vercel
+(Project -> Settings -> Environment Variables):
+
+| Variable | Value |
+|---|---|
+| `DATABASE_URL` | Postgres connection string. Added automatically when you create a Neon database under the project's Storage tab. |
+| `ADMIN_PASSWORD` | Password for `/admin/`. Choose a long one. |
+
+Redeploy after adding them. Tables are created automatically on the first visit.
+
+### Excluding your own visits
+
+Open the site once with `?notrack=1` at the end of the address. That browser is ignored from then on.
+`?notrack=0` turns tracking back on.
+
+### UTM links for ads
+
+`https://balibeach.cloud/?utm_source=facebook&utm_medium=paid&utm_campaign=NAME&utm_content=CREATIVE`
+(use `/id/` for the Bahasa version).

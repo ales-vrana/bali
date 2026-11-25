@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Návštěvnost | balibeach.cloud</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Marcellus&amp;display=swap">
+<style>
+:root {
+  --ground: #F7F6F2; --paper: #FFFFFF; --ink: #10201F; --ink-soft: #33443F; --ink-mute: #4A5A55;
+  --brass: #6E5226; --sea: #0F3B3A; --line: #D9D5C9; --line-soft: #E4E1D7; --wash: #E9EFEC;
+  --display: Marcellus, Georgia, serif; --body: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--ground); color: var(--ink); font-family: var(--body); font-size: 15px; line-height: 1.5; }
+h1, h2, p { margin: 0; }
+h1 { font-family: var(--display); font-weight: 400; font-size: 28px; }
+h2 { font-family: var(--display); font-weight: 400; font-size: 22px; }
+.wrap { max-width: 1180px; margin: 0 auto; padding: 24px 20px 80px; display: flex; flex-direction: column; gap: 28px; }
+.eyebrow { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--brass); }
+.hint { font-size: 13px; color: var(--ink-mute); }
+button, select, input { font: inherit; color: inherit; }
+button, select, input[type=password], input[type=date] { min-height: 44px; padding: 0 14px; border: 1px solid var(--line); border-radius: 4px; background: var(--paper); }
+button { cursor: pointer; font-weight: 500; }
+button:hover { border-color: var(--ink-mute); }
+button.primary { background: var(--sea); color: #fff; border-color: var(--sea); }
+button[aria-pressed=true] { background: var(--ink); color: var(--ground); border-color: var(--ink); }
+:focus-visible { outline: 2px solid var(--brass); outline-offset: 2px; }
+
+.login { max-width: 380px; margin: 12vh auto 0; padding: 28px; background: var(--paper); border: 1px solid var(--line-soft); border-radius: 4px; display: flex; flex-direction: column; gap: 16px; }
+.login label { font-weight: 500; }
+.login input { width: 100%; }
+.error { color: #8A2B1E; font-size: 14px; min-height: 20px; }
+#app-error:empty { display: none; }
+
+.top { display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-end; justify-content: space-between; }
+.filters { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.filters .sep { width: 1px; height: 28px; background: var(--line); margin: 0 4px; }
+
+.tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 12px; }
+.tile { background: var(--paper); border: 1px solid var(--line-soft); border-radius: 4px; padding: 16px; display: flex; flex-direction: column; gap: 4px; }
+.tile .k { font-size: 13px; color: var(--ink-mute); }
+.tile .v { font-family: var(--display); font-size: 30px; line-height: 1.15; }
+.tile .s { font-size: 12px; color: var(--ink-mute); }
+
+.panel { background: var(--paper); border: 1px solid var(--line-soft); border-radius: 4px; padding: 20px; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; }
+.scroll-x { overflow-x: auto; }
+
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th, td { text-align: right; padding: 8px 10px; border-bottom: 1px solid var(--line-soft); white-space: nowrap; font-variant-numeric: tabular-nums; }
+th { font-weight: 500; color: var(--ink-mute); font-size: 12px; letter-spacing: 0.04em; }
+th:first-child, td:first-child { text-align: left; white-space: normal; word-break: break-word; min-width: 150px; }
+tbody tr:hover { background: var(--ground); }
+td.empty { text-align: center; color: var(--ink-mute); padding: 20px; }
+
+.chart { position: relative; }
+.chart svg { display: block; width: 100%; height: 220px; }
+.chart .bar { fill: var(--sea); }
+.chart .hit { fill: transparent; }
+.chart .hit:hover + .bar, .chart .bar.on { fill: #1F5E5B; }
+.chart text { font-family: var(--body); font-size: 11px; fill: var(--ink-mute); }
+.chart .grid { stroke: var(--line-soft); stroke-width: 1; }
+.tip { position: absolute; pointer-events: none; background: var(--ink); color: #F1EEE4; font-size: 13px; padding: 8px 10px; border-radius: 4px; line-height: 1.45; white-space: nowrap; transform: translate(-50%, -100%); display: none; z-index: 2; }
+
+.dist { display: flex; flex-direction: column; gap: 10px; }
+.dist .row { display: grid; grid-template-columns: 80px 1fr 90px; gap: 10px; align-items: center; font-size: 14px; }
+.dist .track { background: var(--wash); border-radius: 4px; height: 14px; overflow: hidden; }
+.dist .fill { background: var(--sea); height: 100%; border-radius: 0 4px 4px 0; min-width: 2px; }
+.dist .n { text-align: right; font-variant-numeric: tabular-nums; color: var(--ink-soft); }
+[hidden] { display: none !important; }
+</style>
+</head>
+<body>
+
+<form class="login" id="login" hidden>
+<div class="eyebrow">balibeach.cloud</div>
+<h1>Návštěvnost</h1>
+<label for="pw">Heslo</label>
+<input type="password" id="pw" autocomplete="current-password" required>
+<div class="error" id="login-error" role="alert"></div>
+<button class="primary" type="submit">Přihlásit</button>
+</form>
+
+<div class="wrap" id="app" hidden>
+
+<div class="top">
+<div>
+<div class="eyebrow">balibeach.cloud</div>
+<h1>Návštěvnost</h1>
+</div>
+<div class="filters">
+<button type="button" data-range="0">Dnes</button>
+<button type="button" data-range="6">7 dní</button>
+<button type="button" data-range="29">30 dní</button>
+<button type="button" data-range="all">Vše</button>
+<span class="sep" aria-hidden="true"></span>
+<label class="hint" for="from">Od</label><input type="date" id="from">
+<label class="hint" for="to">Do</label><input type="date" id="to">
+<select id="tz" aria-label="Časové pásmo">
+<option value="Europe/Prague">Čas Praha</option>
+<option value="Asia/Makassar">Čas Bali</option>
+</select>
+<button type="button" id="reload">Obnovit</button>
+<button type="button" id="logout">Odhlásit</button>
+</div>
+</div>
+
+<div class="error" id="app-error" role="alert"></div>
+
+<section class="tiles" id="tiles"></section>
+
+<section class="panel">
+<h2>Návštěvníci po dnech</h2>
+<div class="chart" id="chart"><div class="tip" id="tip"></div></div>
+<div class="scroll-x"><table id="daily"></table></div>
+</section>
+
+<section class="panel">
+<h2>Kampaně (UTM zdroj / médium / kampaň)</h2>
+<p class="hint">Každý klik z reklamy s UTM parametry se počítá jako nová návštěva.</p>
+<div class="scroll-x"><table id="t-utm"></table></div>
+</section>
+
+<section class="panel">
+<h2>Kreativy (utm_content)</h2>
+<div class="scroll-x"><table id="t-utm_content"></table></div>
+</section>
+
+<div class="grid2">
+<section class="panel">
+<h2>Jak dlouho zůstali</h2>
+<p class="hint">Čas, kdy měl návštěvník stránku skutečně na očích. Okno na pozadí se nepočítá.</p>
+<div class="dist" id="d-duration"></div>
+</section>
+<section class="panel">
+<h2>Jak daleko doscrollovali</h2>
+<p class="hint">Nejhlubší místo stránky, které návštěvník viděl.</p>
+<div class="dist" id="d-scroll"></div>
+</section>
+</div>
+
+<div class="grid2">
+<section class="panel">
+<h2>Kliky na WhatsApp podle tlačítka</h2>
+<p class="hint">hero = nahoře, bar = spodní lišta, final = závěr stránky.</p>
+<div class="scroll-x"><table id="t-placements"></table></div>
+</section>
+<section class="panel">
+<h2>Další kliky</h2>
+<p class="hint">map = odkaz na Google Maps, lang = přepnutí jazyka.</p>
+<div class="scroll-x"><table id="t-other"></table></div>
+</section>
+</div>
+
+<div class="grid2">
+<section class="panel"><h2>Jazyk stránky</h2><div class="scroll-x"><table id="t-lang"></table></div></section>
+<section class="panel"><h2>Zařízení</h2><div class="scroll-x"><table id="t-device"></table></div></section>
+</div>
+
+<div class="grid2">
+<section class="panel"><h2>Země</h2><div class="scroll-x"><table id="t-country"></table></div></section>
+<section class="panel"><h2>Odkud přišli</h2><div class="scroll-x"><table id="t-referrer"></table></div></section>
+</div>
+
+<section class="panel"><h2>Prohlížeč</h2><div class="scroll-x"><table id="t-browser"></table></div></section>
+
+<section class="panel">
+<h2>Posledních 100 návštěv</h2>
+<div class="scroll-x"><table id="t-recent"></table></div>
+</section>
+
+<p class="hint">Vlastní návštěvy vyřadíš otevřením stránky s <code>?notrack=1</code> na konci adresy. Platí pro daný prohlížeč, dokud ho nezapneš zpět přes <code>?notrack=0</code>.</p>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var $ = function (id) { return document.getElementById(id); };
+  var KEY = 'bb_admin_pw';
+  var range = '6';
+
+  function esc(v) {
+    return String(v === null || v === undefined ? '' : v).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  function num(n) { return Number(n || 0).toLocaleString('cs-CZ'); }
+  function pct(a, b) { return b ? (a / b * 100).toFixed(1).replace('.', ',') + ' %' : '0 %'; }
+  function dur(ms) {
+    if (ms === null || ms === undefined) return '-';
+    var s = Math.round(ms / 1000);
+    if (s < 60) return s + ' s';
+    return Math.floor(s / 60) + ' min ' + (s % 60) + ' s';
+  }
+  function iso(d) {
+    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+  }
+  function pw() { try { return sessionStorage.getItem(KEY) || ''; } catch (e) { return ''; } }
+
+  function setRange(value) {
+    range = value;
+    var to = new Date();
+    var from = new Date();
+    if (value === 'all') from = new Date(2026, 10, 1);
+    else from.setDate(to.getDate() - Number(value));
+    $('from').value = iso(from);
+    $('to').value = iso(to);
+    document.querySelectorAll('[data-range]').forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b.getAttribute('data-range') === value));
+    });
+  }
+
+  function show(loggedIn) {
+    $('login').hidden = loggedIn;
+    $('app').hidden = !loggedIn;
+  }
+
+  function load() {
+    var url = '/api/stats?from=' + $('from').value + '&to=' + $('to').value + '&tz=' + encodeURIComponent($('tz').value);
+    $('app-error').textContent = '';
+    return fetch(url, { headers: { Authorization: 'Bearer ' + pw() } }).then(function (r) {
+      return r.json().catch(function () { return {}; }).then(function (data) {
+        if (r.status === 401) {
+          try { sessionStorage.removeItem(KEY); } catch (e) {}
+          show(false);
+          $('login-error').textContent = 'Nesprávné heslo.';
+          return;
+        }
+        if (!r.ok) {
+          show(true);
+          $('app-error').textContent = 'Data se nepodařilo načíst: ' + (data.error || ('chyba ' + r.status));
+          return;
+        }
+        show(true);
+        render(data);
+      });
+    }).catch(function () {
+      show(!!pw());
+      $('app-error').textContent = 'Server neodpovídá. Zkus to za chvíli znovu.';
+    });
+  }
+
+  function tile(k, v, s) {
+    return '<div class="tile"><div class="k">' + esc(k) + '</div><div class="v">' + esc(v) + '</div><div class="s">' + esc(s || '') + '</div></div>';
+  }
+
+  function table(id, head, rows, empty) {
+    var html = '<thead><tr>' + head.map(function (h) { return '<th scope="col">' + esc(h) + '</th>'; }).join('') + '</tr></thead><tbody>';
+    if (!rows.length) html += '<tr><td class="empty" colspan="' + head.length + '">' + esc(empty || 'Zatím žádná data.') + '</td></tr>';
+    rows.forEach(function (r) {
+      html += '<tr>' + r.map(function (c) { return '<td>' + esc(c) + '</td>'; }).join('') + '</tr>';
+    });
+    $(id).innerHTML = html + '</tbody>';
+  }
+
+  var HEAD = ['Návštěvy', 'Návštěvníci', 'Kliky WhatsApp', 'Míra prokliku', 'Medián času', 'Okamžité odchody'];
+  function metricCells(r) {
+    return [num(r.sessions), num(r.visitors), num(r.cta_clicks), pct(r.cta_sessions, r.sessions), dur(r.median_ms), pct(r.bounces, r.sessions)];
+  }
+  function breakdown(id, label, rows) {
+    table(id, [label].concat(HEAD), rows.map(function (r) { return [r.label].concat(metricCells(r)); }));
+  }
+
+  function dist(id, obj) {
+    var keys = Object.keys(obj || {});
+    var total = keys.reduce(function (s, k) { return s + Number(obj[k] || 0); }, 0);
+    $(id).innerHTML = keys.map(function (k) {
+      var n = Number(obj[k] || 0);
+      var w = total ? n / total * 100 : 0;
+      return '<div class="row"><div>' + esc(k) + '</div><div class="track"><div class="fill" style="width:' + w.toFixed(1) + '%"></div></div><div class="n">' + num(n) + ' (' + pct(n, total) + ')</div></div>';
+    }).join('') || '<div class="hint">Zatím žádná data.</div>';
+  }
+
+  function chart(days) {
+    var box = $('chart');
+    var old = box.querySelector('svg');
+    if (old) old.remove();
+    var tip = $('tip');
+    tip.style.display = 'none';
+    if (!days.length) {
+      box.insertAdjacentHTML('beforeend', '<svg viewBox="0 0 600 220" role="img" aria-label="Zatím žádná data"><text x="300" y="110" text-anchor="middle">Zatím žádná data</text></svg>');
+      return;
+    }
+    var W = Math.max(600, box.clientWidth || 600), H = 220, L = 36, R = 8, T = 12, B = 26;
+    var max = Math.max.apply(null, days.map(function (d) { return d.visitors; }).concat([1]));
+    var step = Math.max(1, Math.ceil(max / 4));
+    var top = step * Math.ceil(max / step);
+    var slot = (W - L - R) / days.length;
+    var bw = Math.max(2, Math.min(24, slot - 2));
+    var every = Math.ceil(days.length / 10);
+    var svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Návštěvníci po dnech, sloupcový graf. Stejná čísla jsou v tabulce pod grafem.">';
+    for (var g = 0; g <= top; g += step) {
+      var y = T + (H - T - B) * (1 - g / top);
+      svg += '<line class="grid" x1="' + L + '" x2="' + (W - R) + '" y1="' + y + '" y2="' + y + '"></line><text x="' + (L - 6) + '" y="' + (y + 4) + '" text-anchor="end">' + g + '</text>';
+    }
+    days.forEach(function (d, i) {
+      var h = (H - T - B) * d.visitors / top;
+      var x = L + slot * i + (slot - bw) / 2;
+      var y = H - B - h;
+      var r = Math.min(4, bw / 2, h);
+      var path = 'M' + x + ' ' + (H - B) + 'V' + (y + r) + 'Q' + x + ' ' + y + ' ' + (x + r) + ' ' + y + 'H' + (x + bw - r) + 'Q' + (x + bw) + ' ' + y + ' ' + (x + bw) + ' ' + (y + r) + 'V' + (H - B) + 'Z';
+      svg += '<rect class="hit" data-i="' + i + '" x="' + (L + slot * i) + '" y="' + T + '" width="' + slot + '" height="' + (H - T - B) + '"></rect>';
+      svg += '<path class="bar" d="' + path + '"></path>';
+      if (i % every === 0) svg += '<text x="' + (x + bw / 2) + '" y="' + (H - 8) + '" text-anchor="middle">' + esc(d.day.slice(8) + '. ' + Number(d.day.slice(5, 7)) + '.') + '</text>';
+    });
+    box.insertAdjacentHTML('beforeend', svg + '</svg>');
+    var el = box.querySelector('svg');
+    el.addEventListener('mousemove', function (e) {
+      var hit = e.target.closest('.hit');
+      if (!hit) { tip.style.display = 'none'; return; }
+      var d = days[Number(hit.getAttribute('data-i'))];
+      var rect = box.getBoundingClientRect();
+      tip.innerHTML = '<strong>' + esc(d.day) + '</strong><br>Návštěvníci: ' + num(d.visitors) + '<br>Návštěvy: ' + num(d.sessions) + '<br>Kliky WhatsApp: ' + num(d.cta_clicks);
+      tip.style.left = Math.min(rect.width - 80, Math.max(80, e.clientX - rect.left)) + 'px';
+      tip.style.top = Math.max(70, e.clientY - rect.top - 10) + 'px';
+      tip.style.display = 'block';
+    });
+    el.addEventListener('mouseleave', function () { tip.style.display = 'none'; });
+  }
+
+  function render(d) {
+    var t = d.totals || {};
+    $('tiles').innerHTML = [
+      tile('Návštěvníci', num(t.visitors), 'z toho noví: ' + num(t.new_visitors)),
+      tile('Návštěvy', num(t.sessions), 'zobrazení stránek: ' + num(t.pageviews)),
+      tile('Kliky na WhatsApp', num(t.cta_clicks), 'návštěv s klikem: ' + num(t.cta_sessions)),
+      tile('Míra prokliku', pct(t.cta_sessions, t.sessions), 'návštěvy s klikem / návštěvy'),
+      tile('Medián času', dur(t.median_ms), 'průměr: ' + dur(t.avg_ms)),
+      tile('Čas do kliku', dur(t.median_first_cta_ms), 'medián u těch, kdo klikli'),
+      tile('Okamžité odchody', pct(t.bounces, t.sessions), 'pod 10 s a bez kliku'),
+      tile('Hloubka scrollu', num(t.avg_scroll) + ' %', 'průměr přes návštěvy')
+    ].join('');
+
+    chart(d.daily || []);
+    table('daily', ['Den'].concat(HEAD), (d.daily || []).slice().reverse().map(function (r) { return [r.day].concat(metricCells(r)); }));
+
+    var b = d.breakdowns || {};
+    breakdown('t-utm', 'Zdroj / médium / kampaň', b.utm || []);
+    breakdown('t-utm_content', 'Kreativa', b.utm_content || []);
+    breakdown('t-lang', 'Jazyk', b.lang || []);
+    breakdown('t-device', 'Zařízení', b.device || []);
+    breakdown('t-browser', 'Prohlížeč', b.browser || []);
+    breakdown('t-country', 'Země', b.country || []);
+    breakdown('t-referrer', 'Web', b.referrer || []);
+
+    dist('d-duration', d.duration);
+    dist('d-scroll', d.scroll);
+
+    table('t-placements', ['Tlačítko', 'Kliky', 'Návštěvy', 'Medián času před klikem'],
+      (d.placements || []).map(function (r) { return [r.label, num(r.clicks), num(r.sessions), dur(r.median_ms)]; }), 'Zatím žádné kliky.');
+    table('t-other', ['Typ', 'Kliky', 'Návštěvy'],
+      (d.other || []).map(function (r) { return [r.label, num(r.clicks), num(r.sessions)]; }), 'Zatím žádné kliky.');
+
+    table('t-recent', ['Začátek', 'Jazyk', 'Zařízení', 'Země', 'Město', 'Odkud', 'UTM', 'Kreativa', 'Čas', 'Scroll', 'Kliky WA', 'Čas do kliku', 'Nový'],
+      (d.recent || []).map(function (r) {
+        var utm = [r.utm_source, r.utm_medium, r.utm_campaign].filter(Boolean).join(' / ');
+        return [r.started, r.lang, (r.device || '') + (r.browser ? ', ' + r.browser : ''), r.country, r.city, r.referrer, utm, r.utm_content,
+          dur(r.engaged_ms), (r.max_scroll || 0) + ' %', num(r.cta_clicks), r.first_cta_ms === null ? '' : dur(r.first_cta_ms), r.is_new_visitor ? 'ano' : ''];
+      }));
+  }
+
+  $('login').addEventListener('submit', function (e) {
+    e.preventDefault();
+    $('login-error').textContent = '';
+    try { sessionStorage.setItem(KEY, $('pw').value); } catch (err) {}
+    $('pw').value = '';
+    load();
+  });
+  $('logout').addEventListener('click', function () {
+    try { sessionStorage.removeItem(KEY); } catch (e) {}
+    show(false);
+  });
+  $('reload').addEventListener('click', load);
+  $('tz').addEventListener('change', load);
+  ['from', 'to'].forEach(function (id) {
+    $(id).addEventListener('change', function () {
+      document.querySelectorAll('[data-range]').forEach(function (b) { b.setAttribute('aria-pressed', 'false'); });
+      load();
+    });
+  });
+  document.querySelectorAll('[data-range]').forEach(function (b) {
+    b.addEventListener('click', function () { setRange(b.getAttribute('data-range')); load(); });
+  });
+
+  setRange(range);
+  if (pw()) load(); else show(false);
+})();
+</script>
+</body>
+</html>
