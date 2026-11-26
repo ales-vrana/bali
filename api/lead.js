@@ -3,8 +3,8 @@
 //
 // Environment variables:
 //   RESEND_API_KEY   required, API key from resend.com
-//   EMAIL_FROM       optional, default "Bali Beach Land <info@balibeach.cloud>"
-//   EMAIL_REPLY_TO   optional, address that receives replies
+//   EMAIL_FROM       optional, default "Aleš Vrána <ales@coachville.eu>"
+//   EMAIL_REPLY_TO   optional, only needed if replies should go somewhere other than the sender
 const crypto = require('crypto');
 const { query } = require('./_lib/db');
 
@@ -143,7 +143,7 @@ module.exports = async (req, res) => {
 
   const mail = buildMail(lang);
   const payload = {
-    from: process.env.EMAIL_FROM || 'Bali Beach Land <info@balibeach.cloud>',
+    from: process.env.EMAIL_FROM || 'Aleš Vrána <ales@coachville.eu>',
     to: [email],
     subject: mail.subject,
     text: mail.text,

@@ -51,8 +51,8 @@ the info email through Resend. The email texts (English and Bahasa) are in `api/
 | Variable | Value |
 |---|---|
 | `RESEND_API_KEY` | API key from resend.com. Required. |
-| `EMAIL_FROM` | Optional. Default `Bali Beach Land <info@balibeach.cloud>`. The domain must be verified in Resend. |
-| `EMAIL_REPLY_TO` | Optional. Address that receives replies to the info email. |
+| `EMAIL_FROM` | Optional. Default `Aleš Vrána <ales@coachville.eu>`. The domain must be verified in Resend. |
+| `EMAIL_REPLY_TO` | Optional. Only if replies should go to a different address than the sender. |
 
 Limits: one email per address per day, 5 requests per IP per hour, 150 emails per day in total.
 
