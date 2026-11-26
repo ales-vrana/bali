@@ -46,7 +46,7 @@ h2 { font-family: var(--display); font-weight: 400; font-size: clamp(28px, 5vw, 
 
 /* Header */
 .site-header { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; padding-top: 18px; padding-bottom: 18px; }
-.brand { font-family: var(--display); font-size: 18px; letter-spacing: 0.04em; margin-right: auto; }
+.brand { font-family: var(--display); font-size: 18px; line-height: 1.3; letter-spacing: 0.04em; margin-right: auto; flex: 1 1 160px; min-width: 0; }
 .tagline { order: 3; flex-basis: 100%; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--brass); }
 @media (min-width: 720px) {
   .tagline { order: 0; flex-basis: auto; }

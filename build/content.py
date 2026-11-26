@@ -30,6 +30,7 @@ LANGS = {
             "town 10 minutes away. IDR 2.2 billion, sold directly by the owners."
         ),
         "brand": "Jumpai Beach Land",
+        "brand_header": "Jumpai Beach Land for sale - available now",
         "tagline": "For sale by owner",
         "lang_nav_label": "Language",
         "hero_eyebrow": "East Bali · 10 minutes from town",
@@ -230,6 +231,7 @@ LANGS = {
             "10 menit. Rp 2,2 miliar, dijual langsung oleh pemilik."
         ),
         "brand": "Tanah Pantai Jumpai",
+        "brand_header": "Tanah Pantai Jumpai dijual - tersedia sekarang",
         "tagline": "Dijual langsung oleh pemilik",
         "lang_nav_label": "Bahasa",
         "hero_eyebrow": "Bali Timur · 10 menit dari kota",
