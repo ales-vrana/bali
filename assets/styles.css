@@ -70,6 +70,7 @@ h1 { font-family: var(--display); font-weight: 400; font-size: clamp(36px, 7vw, 
 .price { display: flex; flex-direction: column; gap: 4px; padding: 20px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .price .label { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); }
 .price .amount { font-family: var(--display); font-size: 34px; line-height: 1.2; }
+.price .per-are { font-size: 17px; font-weight: 500; color: var(--ink); }
 .price .approx { font-size: 16px; color: var(--ink-soft); }
 
 .btn { display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 56px; padding: 14px 24px; border-radius: 4px; text-decoration: none; font-weight: 600; font-size: 17px; }
