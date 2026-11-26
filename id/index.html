@@ -72,8 +72,19 @@ fbq('track', 'PageView');
 <div class="hero-map">
 <svg role="img" aria-label="Sketsa lokasi: tanah persegi panjang dengan sisi pendek 16,6 meter di jalan pantai dan gang di sisi utara, sekitar 100 meter di utara Pantai Jumpai" viewBox="0 0 360 380">
 <rect x="0" y="0" width="360" height="380" fill="#E6EBDD"></rect>
-<rect x="0" y="300" width="360" height="80" fill="#0F3B3A"></rect>
-<rect x="0" y="284" width="360" height="18" fill="#E8DCC0"></rect>
+<defs>
+<linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#4FA9CB"></stop>
+<stop offset="0.35" stop-color="#1F7AA8"></stop>
+<stop offset="1" stop-color="#155E87"></stop>
+</linearGradient>
+</defs>
+<rect x="0" y="296" width="360" height="84" fill="url(#sea)"></rect>
+<rect x="0" y="282" width="360" height="16" fill="#E8DCC0"></rect>
+<path d="M0 298 Q15 293 30 298 T60 298 T90 298 T120 298 T150 298 T180 298 T210 298 T240 298 T270 298 T300 298 T330 298 T360 298 L360 302 L0 302 Z" fill="#E8DCC0"></path>
+<path d="M0 303 Q15 298 30 303 T60 303 T90 303 T120 303 T150 303 T180 303 T210 303 T240 303 T270 303 T300 303 T330 303 T360 303" fill="none" stroke="#FFFFFF" stroke-opacity="0.85" stroke-width="2" stroke-linecap="round"></path>
+<path d="M-10 318 Q10 313 30 318 T70 318 T110 318 T150 318 T190 318 T230 318 T270 318 T310 318 T350 318 T390 318" fill="none" stroke="#FFFFFF" stroke-opacity="0.35" stroke-width="1.5" stroke-linecap="round"></path>
+<path d="M200 362 Q215 357 230 362 T260 362 T290 362 T320 362 T350 362" fill="none" stroke="#FFFFFF" stroke-opacity="0.25" stroke-width="1.5" stroke-linecap="round"></path>
 <path d="M214 0 L250 232 Q254 250 274 250 L360 244" fill="none" stroke="#C9CCC2" stroke-width="22" stroke-linecap="round"></path>
 <path d="M214 0 L250 232 Q254 250 274 250 L360 244" fill="none" stroke="#F7F6F2" stroke-width="1.5" stroke-dasharray="6 8"></path>
 <path d="M98 113 L217 107 L219 119 L100 125 Z" fill="#C9CCC2"></path>
@@ -86,7 +97,7 @@ fbq('track', 'PageView');
 <line x1="270" y1="121" x2="281" y2="190" stroke="#10201F" stroke-width="1.2"></line>
 <path d="M265 122 L275 120 M276 191 L286 189" fill="none" stroke="#10201F" stroke-width="1.2" stroke-linecap="round"></path>
 <text x="286" y="160" font-family="Inter, sans-serif" font-size="12" fill="#10201F">16,6 m</text>
-<text x="24" y="346" font-family="Marcellus, Georgia, serif" font-size="20" fill="#F7F6F2">Pantai Jumpai</text>
+<text x="24" y="352" font-family="Marcellus, Georgia, serif" font-size="20" fill="#FFFFFF">Pantai Jumpai</text>
 <text x="258" y="62" font-family="Inter, sans-serif" font-size="11" letter-spacing="1.2" fill="#33443F">JALAN PANTAI</text>
 <text x="258" y="78" font-family="Inter, sans-serif" font-size="11" fill="#33443F">lebar 7 m</text>
 <path d="M36 52 L36 24 M28 34 L36 24 L44 34" fill="none" stroke="#10201F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
