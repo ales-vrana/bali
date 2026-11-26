@@ -37,7 +37,7 @@ LANGS = {
         "hero_h1": "Your home in BALI<br>by the beach,<br>no traffic",
         "hero_lede": (
             "400 m² of freehold land, 100 m from Jumpai Beach. A calm road, the sea at the end "
-            "of it, and town 10 minutes away. A place to settle down, not to pass through."
+            "of it, and town 10 minutes away. Pink zone - building permit for home or commercial."
         ),
         "price_label": "Asking price",
         "price_amount": "IDR 2.2 billion",
@@ -238,7 +238,7 @@ LANGS = {
         "hero_h1": "Rumah Anda di BALI<br>dekat pantai,<br>tanpa macet",
         "hero_lede": (
             "Tanah SHM 400 m², 100 m dari Pantai Jumpai. Jalan yang tenang, laut di ujungnya, "
-            "dan kota hanya 10 menit. Tempat untuk menetap, bukan sekadar singgah."
+            "dan kota hanya 10 menit. Zona pink - izin bangun untuk hunian atau komersial."
         ),
         "price_label": "Harga penawaran",
         "price_amount": "Rp 2,2 miliar",
