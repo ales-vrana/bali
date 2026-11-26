@@ -55,9 +55,11 @@ LANGS = {
         "lead_privacy": "We use your email only to send you this information.",
         "cta_small": "We reply in English or Bahasa Indonesia. No agent, no commission.",
         "map_aria": (
-            "Site sketch: the plot sits on the beach road, about 100 metres north of Jumpai Beach"
+            "Site sketch: a rectangular plot with its 16.6 metre short side on the beach road and a side lane along its north edge, about 100 metres north of Jumpai Beach"
         ),
         "map_plot": "THE PLOT",
+        "map_lane": "SIDE LANE 2.8 m",
+        "map_front": "16.6 m",
         "map_distance": "approx. 100 m",
         "map_beach": "Jumpai Beach",
         "map_road": "BEACH ROAD",
@@ -254,9 +256,11 @@ LANGS = {
             "Kami membalas dalam Bahasa Indonesia atau Inggris. Tanpa perantara, tanpa komisi."
         ),
         "map_aria": (
-            "Sketsa lokasi: tanah berada di jalan pantai, sekitar 100 meter di utara Pantai Jumpai"
+            "Sketsa lokasi: tanah persegi panjang dengan sisi pendek 16,6 meter di jalan pantai dan gang di sisi utara, sekitar 100 meter di utara Pantai Jumpai"
         ),
         "map_plot": "TANAH INI",
+        "map_lane": "GANG 2,8 m",
+        "map_front": "16,6 m",
         "map_distance": "± 100 m",
         "map_beach": "Pantai Jumpai",
         "map_road": "JALAN PANTAI",
