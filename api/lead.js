@@ -22,7 +22,6 @@ const MAIL = {
     link: 'https://www.balibeach.cloud',
     hello: 'Hello,',
     intro: 'here is the link with the offer:',
-    price: 'The price is approx. USD 122,000 (IDR 2.2 billion).',
     questions: 'If you have any questions, feel free to contact us.',
     owners: 'direct owners',
   },
@@ -31,7 +30,6 @@ const MAIL = {
     link: 'https://www.balibeach.cloud/id/',
     hello: 'Halo,',
     intro: 'berikut tautan penawarannya:',
-    price: 'Harganya Rp 2,2 miliar (sekitar USD 122.000).',
     questions: 'Jika ada pertanyaan, silakan hubungi kami.',
     owners: 'pemilik langsung',
   },
@@ -43,7 +41,6 @@ function buildMail(lang) {
   const text = [
     m.hello, '',
     m.intro, m.link, '',
-    m.price, '',
     m.questions,
     'WhatsApp: ' + WHATSAPP_DISPLAY + ' (' + WHATSAPP + ')', '',
     'Aleš Vrána & Meira Dewi',
@@ -53,7 +50,6 @@ function buildMail(lang) {
     '<div style="font-family: Arial, Helvetica, sans-serif; font-size: 16px; line-height: 1.6; color: #10201F">' +
     '<p>' + m.hello + '</p>' +
     '<p>' + m.intro + '<br><a href="' + tracked + '" style="color: #0F3B3A">' + m.link + '</a></p>' +
-    '<p>' + m.price + '</p>' +
     '<p>' + m.questions + '<br>WhatsApp: <a href="' + WHATSAPP + '" style="color: #0F3B3A">' + WHATSAPP_DISPLAY + '</a></p>' +
     '<p>Aleš Vrána &amp; Meira Dewi<br>' + m.owners + '</p>' +
     '</div>';
