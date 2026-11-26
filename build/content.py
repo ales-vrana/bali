@@ -34,7 +34,7 @@ LANGS = {
         "tagline": "For sale by owner",
         "lang_nav_label": "Language",
         "hero_eyebrow": "East Bali · 10 minutes from town",
-        "hero_h1": "Your home in BALI<br>by the beach,<br>no traffic",
+        "hero_h1": "Your new quiet beach home in Bali?",
         "hero_lede": (
             "400 m² of freehold land, 100 m from Jumpai Beach. A calm road, the sea at the end "
             "of it, and town 10 minutes away. Pink zone - building permit for home or commercial."
@@ -235,7 +235,7 @@ LANGS = {
         "tagline": "Dijual langsung oleh pemilik",
         "lang_nav_label": "Bahasa",
         "hero_eyebrow": "Bali Timur · 10 menit dari kota",
-        "hero_h1": "Rumah Anda di BALI<br>dekat pantai,<br>tanpa macet",
+        "hero_h1": "Rumah pantai baru Anda yang tenang di Bali?",
         "hero_lede": (
             "Tanah SHM 400 m², 100 m dari Pantai Jumpai. Jalan yang tenang, laut di ujungnya, "
             "dan kota hanya 10 menit. Zona pink - izin bangun untuk hunian atau komersial."
